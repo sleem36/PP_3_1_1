@@ -24,15 +24,21 @@
         <td th:text="${user.lastName}"></td>
         <td th:text="${user.email}"></td>
         <td style="display: flex">
-            <a th:href="@{/updateUser?userId={userId}(userId=${user.id})}" class="btn btn-info mx-3" role="button">Update</a>
-            <a th:href="@{/deleteUser?userId={userId}(userId=${user.id})}" class="btn btn-danger" role="button">Delete</a>
+            <a th:href="@{/users/edit?userId={userId}(userId=${user.id})}" class="btn btn-info" role="button">Update</a>
+            <a th:href="@{/users/delete?userId={userId}(userId=${user.id})}" class="btn btn-danger mx-3" role="button">Delete</a>
+            <div th:unless="${#lists.size(users) == 1}">
+                <a th:href="@{/users/{id}(id=${user.id})}" class="btn btn-warning" role="button">View</a>
+            </div>
 
         </td>
     </tr>
 </th:block>
 </table>
 <br>
-<input type="button" value="Add" onclick="window.location.href = 'addNew'" class="btn btn-primary">
+<div th:unless="${#lists.size(users) == 1}">
+    <input type="button" value="Add" onclick="window.location.href = 'users/new'" class="btn btn-primary">
+</div>
+
 
 </body>
 </html>

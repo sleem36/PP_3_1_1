@@ -7,8 +7,15 @@
     <title>Add</title>
 </head>
 <body class="container">
-<h1 style="text-align: center">User add</h1>
-<form th:action="@{/saveNew}" th:object="${userAdd}" method="post">
+<h1 style="text-align: center">
+    <div th:if="${userId}">
+        User add
+    </div>
+    <div th:unless="${userId}">
+        User edit
+    </div>
+</h1>
+<form th:action="@{/users}" th:object="${userAdd}" method="post">
     <input type="hidden" id="userId" th:field="*{id}">
     <div class="form-group">
     <label for="name">Name:</label>
